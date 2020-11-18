@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "s-my-banner": "/components/my-banner/index"
+  }
+}
