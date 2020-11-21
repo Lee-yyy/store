@@ -1,0 +1,5 @@
+/* components/vatabs-item/index.wxss */
+.conten-item{
+  height: 80px;
+  border: 1px solid red;
+}

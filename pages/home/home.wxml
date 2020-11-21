@@ -1,7 +1,7 @@
-<!--pages/home/home.wxml-->
+<!--导航__首页-->
 <view slot="content" class="container">
     <!--    优惠券-->
-    <image class="top-theme" src="{{themeA.entrance_img}}"></image>
+    <image class="top-theme" data-aname="a-2" bind:tap="onGoToCoupons" class="activity"src="{{themeA.entrance_img}}"></image>
 
     <!--    分类宫格-->
     <s-category-grid grid="{{grid}}"></s-category-grid>

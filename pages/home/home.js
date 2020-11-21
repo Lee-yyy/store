@@ -60,7 +60,7 @@ Page({
     // const bannerB = await Banner.getHomeLocationB()
     const grid = await Category.getHomeLocationC()
     console.log(grid);
-    
+
     // const activityD = await Activity.getHomeLocationD()
 
     // const bannerG = await Banner.getHomeLocationG()
@@ -69,24 +69,25 @@ Page({
 
     this.setData({
       themeA,
-    // bannerB,
-    grid,
-    // activityD,
-    // themeE,
-    // themeESpu,
-    // themeF,
-    // bannerG,
-    // themeH
+      // bannerB,
+      grid,
+      // activityD,
+      // themeE,
+      // themeESpu,
+      // themeF,
+      // bannerG,
+      // themeH
     })
   },
 
+  // 跳转优惠券列表
   onGoToCoupons(event) {
     const name = event.currentTarget.dataset.aname
     wx.navigateTo({
       url: `/pages/coupon/coupon?name=${name}&type=${CouponCenterType.ACTIVITY}`
     })
   },
-
+  // 触底获取更多spu数据
   onReachBottom: async function () {
     const data = await this.data.spuPaging.getMoreData()
     if (!data) {

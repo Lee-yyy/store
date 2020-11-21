@@ -3,7 +3,8 @@
     "pages/home/home",
     "pages/category/category",
     "pages/cart/cart",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/coupon/coupon"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -46,7 +47,13 @@
     "l-grid": "/miniprogram_npm/lin-ui/grid/index",
     "l-grid-item": "/miniprogram_npm/lin-ui/grid-item/index",
     "l-avatar": "/miniprogram_npm/lin-ui/avatar/index",
-    "l-button": "/miniprogram_npm/lin-ui/button/index"
+    "l-button": "/miniprogram_npm/lin-ui/button/index",
+    "l-price": "/miniprogram_npm/lin-ui/price/index",
+    "s-empty": "/components/empty/index",
+    "s-cart-item": "/components/cart-item/index",
+    "l-tag": "/miniprogram_npm/lin-ui/tag/index",
+    "s-checkbox": "/components/checkbox/index",
+    "l-slide-view": "/miniprogram_npm/lin-ui/slide-view/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

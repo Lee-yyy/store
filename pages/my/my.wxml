@@ -1,4 +1,4 @@
-<!--pages/my/my.wxml-->
+<!--导航__我的-->
 <view class="container">
     <s-my-banner coupon-count="{{couponCount}}"></s-my-banner>
 
