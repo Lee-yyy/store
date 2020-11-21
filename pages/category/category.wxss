@@ -10,3 +10,14 @@ page{
     border-bottom: 1px solid #ccc;
     padding-bottom: 20px;
 }
+.spu-box{
+box-sizing: border-box;
+padding:5rpx 30rpx 5rpx 0;
+}
+.content-title{
+    height: 30px;
+    line-height: 30px;
+    font-size: 24rpx;
+    margin-top: 3px;
+    background-color: rgba(247, 247, 247);
+}

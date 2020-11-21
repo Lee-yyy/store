@@ -35,6 +35,8 @@ class Paging {
   async _actualGetData() {
     const req = this._getCurrentReq()
     let paging = await Http.request(req)
+    console.log("++++++++++++++++paging++++++++++++++++++")
+    console.log(paging)
     if(!paging){
       return null
     }
@@ -52,7 +54,9 @@ class Paging {
     if(this.moreData){
       this.start += this.limit
     }
-    this._accumulate(paging.items)
+    // this._accumulate(paging.items)
+    this._accumulate(paging)
+    console.log("++++++++++++++++accumulator++++++++++++++++++")
     console.log(this.accumulator)
     return {
       empty:false,

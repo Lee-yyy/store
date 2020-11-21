@@ -1,0 +1,31 @@
+<wxs src="../../wxs/stock.wxs" module="s"></wxs>
+<view class="sku-container">
+            <view class="image-container">
+                <view  wx:if="{{s.shortage(skuItem.stock)}}" class="image-stock-pinch">
+                    <text>仅剩{{skuItem.stock}}件</text>
+                </view>
+                <image mode="aspectFit" class="left" src="{{skuItem.img}}"></image>
+            </view>
+
+            <view class="right">
+                <view class="description-container">
+                    <view class="title-container">
+                        <text class="title">{{skuItem.title}}</text>
+                    </view>
+                        <text class="sub-title">{{skuItem.sub_title}}</text>
+                    <view  class="spec">
+                        <text>满20减10</text>
+                    </view>
+
+                </view>
+
+                <view class="price-container">
+                    <l-price
+                            color="#157658"
+                            count-size="28"
+                            value="{{123}}">
+                    </l-price>
+                    <s-cart-icon></s-cart-icon>
+                </view>
+            </view>
+        </view>

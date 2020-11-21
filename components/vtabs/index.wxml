@@ -15,7 +15,7 @@
             bindtap="handleTabClick"
           >
             <view class="weui-vtabs-bar__title {{activeTab === index ? activeClass : ''}}">
-              <text class="">{{item.title}}</text>
+              <text class="">{{item.name}}</text>
             </view>
           </view>
         </block>

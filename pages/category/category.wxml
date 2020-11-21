@@ -4,14 +4,18 @@
         activeTab="{{activeTab}}"
         bindtabclick="onTabCLick"
         bindchange="onChange"
+        tabBarActiveTextColor="{{mainColor}}"
+        tabBarLineColor="{{mainColor}}"
         class="test"
 >
-    <block wx:for="{{vtabs}}" wx:key="title" >
+    <block wx:for="{{vtabs}}" wx:key="id" >
         <mp-vtabs-content tabIndex="{{index}}">
-            <view wx:for="[3]" wx:key="index" >
-                <mp-vtabs-item >
-                     <view>占位{{index+1}}</view>
-                 </mp-vtabs-item>
+            <view class="content-title">
+            <text>{{item.name}}</text>
+            </view>
+            <view wx:for="{{item.skuList}}" wx:key="id" class="spu-box" >
+                <s-spu-item  sku-item="{{item}}">
+                 </s-spu-item>
                 </view>
         </mp-vtabs-content>
     </block>

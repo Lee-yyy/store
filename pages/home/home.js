@@ -5,7 +5,7 @@ import {imgsrc} from "../../config/config";
 // import {Banner} from "../../models/banner";
 import {Category} from "../../models/category.js";
 // import {Activity} from "../../models/activity";
-// import {SpuPaging} from "../../models/spu-paging";
+import {SpuPaging} from "../../models/spu-paging";
 // import {CouponCenterType} from "../../core/enum";
 
 Page({
@@ -26,17 +26,22 @@ Page({
 
   async onLoad(options) {
     this.initAllData()
-    // this.initBottomSpuList()
+    this.initBottomSpuList()
   },
 
   async initBottomSpuList() {
     const paging = SpuPaging.getLatestPaging()
+    console.log("----------------paging----------------");
+    console.log(paging)
     this.data.spuPaging = paging
     const data = await paging.getMoreData()
+    console.log("----------------data----------------");
+    console.log(data)
     if (!data) {
       return
     }
-    wx.lin.renderWaterFlow(data.items)
+    // wx.lin.renderWaterFlow(data.items)
+    wx.lin.renderWaterFlow(data)
   },
 
   async initAllData() {
@@ -44,6 +49,7 @@ Page({
     await theme.getThemes()
 
     const themeA = theme.getHomeLocationA()
+    console.log("----------------themeA----------------");
     console.log(themeA);
     // const themeE = theme.getHomeLocationE()
     // let themeESpu = []
@@ -59,6 +65,7 @@ Page({
 
     // const bannerB = await Banner.getHomeLocationB()
     const grid = await Category.getHomeLocationC()
+    console.log("----------------grid----------------");
     console.log(grid);
 
     // const activityD = await Activity.getHomeLocationD()
@@ -93,7 +100,8 @@ Page({
     if (!data) {
       return
     }
-    wx.lin.renderWaterFlow(data.items)
+    // wx.lin.renderWaterFlow(data.items)
+    wx.lin.renderWaterFlow(data)
     if (!data.moreData) {
       this.setData({
         loadingType: 'end'

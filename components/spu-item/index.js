@@ -5,6 +5,7 @@ Component({
    */
   properties: {
 
+    skuItem: Object,
   },
 
   /**

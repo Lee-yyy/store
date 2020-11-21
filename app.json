@@ -51,6 +51,8 @@
     "l-price": "/miniprogram_npm/lin-ui/price/index",
     "s-empty": "/components/empty/index",
     "s-cart-item": "/components/cart-item/index",
+    "s-cart-icon": "components/cart-icon/index",
+    "s-counter": "components/counter/index",
     "l-tag": "/miniprogram_npm/lin-ui/tag/index",
     "s-checkbox": "/components/checkbox/index",
     "l-slide-view": "/miniprogram_npm/lin-ui/slide-view/index"

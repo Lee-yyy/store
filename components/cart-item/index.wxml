@@ -16,8 +16,9 @@
 <!--                    <text>售 罄</text>-->
 <!--                </view> -->
                 <view  class="image-stock-pinch">
-                    <text>仅剩9件</text>
+                    <text>仅剩{{cartItem.sku.stock}}件</text>
                 </view>
+                 <image mode="aspectFit" class="left" src="{{cartItem.sku.img}}"></image>
                 <image mode="aspectFit" class="left" src="https://img.ltn.com.tw/Upload/food/page/2019/06/08/190608-9170-0-5tCJ3.png"></image>
             </view>
 
@@ -45,13 +46,16 @@
                             value="{{123}}">
                     </l-price>
                     <s-counter bind:linout="onOutNumber"
-                               max="{{9}}"
+                               max="{{90}}"
                                bind:lintap="onSelectCount"
                                count="{{3}}">
                     </s-counter>
+                    <s-cart-icon></s-cart-icon>
                 </view>
             </view>
 
+            <view wx:if="{{soldOut || !online}}" class="sold-out">
+            </view>
         </view>
     </view>
 
