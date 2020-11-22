@@ -4,7 +4,9 @@
     "pages/category/category",
     "pages/cart/cart",
     "pages/my/my",
-    "pages/coupon/coupon"
+    "pages/coupon/coupon",
+    "pages/my-coupon/my-coupon",
+    "pages/my-order/my-order"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -55,7 +57,10 @@
     "s-counter": "components/counter/index",
     "l-tag": "/miniprogram_npm/lin-ui/tag/index",
     "s-checkbox": "/components/checkbox/index",
-    "l-slide-view": "/miniprogram_npm/lin-ui/slide-view/index"
+    "l-slide-view": "/miniprogram_npm/lin-ui/slide-view/index",
+    "l-badge": "/miniprogram_npm/lin-ui/badge/index",
+    "l-icon": "/miniprogram_npm/lin-ui/icon/index",
+    "l-list": "/miniprogram_npm/lin-ui/list/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

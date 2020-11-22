@@ -1,11 +1,13 @@
 import {Http} from "./http";
+import {Locker} from "../models/locker"
 // 瀑布流分页获取数据
+
 class Paging {
 
   start
   limit
   req
-  locker = false
+  locker = new Locker()
   url
   moreData = true
   accumulator = []
@@ -22,12 +24,13 @@ class Paging {
     if(!this.moreData){
       return
     }
-    if(!this._getLocker()){
+    if(!this.locker.getLocker()){
+      console.log("locker is closed")
       return
     }
     // 只在有更多数据并锁开着情况下获取数据
     const data =await this._actualGetData()
-    this._releaseLocker()
+    this.locker.releaseLocker()
     return data
   }
 
@@ -35,8 +38,6 @@ class Paging {
   async _actualGetData() {
     const req = this._getCurrentReq()
     let paging = await Http.request(req)
-    console.log("++++++++++++++++paging++++++++++++++++++")
-    console.log(paging)
     if(!paging){
       return null
     }
@@ -56,8 +57,6 @@ class Paging {
     }
     // this._accumulate(paging.items)
     this._accumulate(paging)
-    console.log("++++++++++++++++accumulator++++++++++++++++++")
-    console.log(this.accumulator)
     return {
       empty:false,
       items: paging.items,
@@ -86,18 +85,6 @@ class Paging {
     }
     this.req.url  = url
     return this.req
-  }
-  // 关锁
-  _getLocker() {
-    if (this.locker) {
-      return false
-    }
-    this.locker = true
-    return true
-  }
-  // 开锁
-  _releaseLocker() {
-    this.locker = false
   }
 
 }
