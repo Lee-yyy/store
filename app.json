@@ -6,12 +6,13 @@
     "pages/my/my",
     "pages/coupon/coupon",
     "pages/my-coupon/my-coupon",
-    "pages/my-order/my-order"
+    "pages/my-order/my-order",
+    "pages/order/order"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "一份外卖",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -53,6 +54,7 @@
     "l-price": "/miniprogram_npm/lin-ui/price/index",
     "s-empty": "/components/empty/index",
     "s-cart-item": "/components/cart-item/index",
+    "l-counter": "/miniprogram_npm/lin-ui/counter/index",
     "s-cart-icon": "components/cart-icon/index",
     "s-counter": "components/counter/index",
     "l-tag": "/miniprogram_npm/lin-ui/tag/index",
@@ -60,7 +62,10 @@
     "l-slide-view": "/miniprogram_npm/lin-ui/slide-view/index",
     "l-badge": "/miniprogram_npm/lin-ui/badge/index",
     "l-icon": "/miniprogram_npm/lin-ui/icon/index",
-    "l-list": "/miniprogram_npm/lin-ui/list/index"
+    "l-list": "/miniprogram_npm/lin-ui/list/index",
+    "s-coupon-mini": "/components/coupon-mini/index",
+    "s-coupon": "/components/coupon/index",
+    "l-popup": "/miniprogram_npm/lin-ui/popup/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

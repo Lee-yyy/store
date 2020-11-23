@@ -41,7 +41,7 @@ Page({
       return
     }
     // wx.lin.renderWaterFlow(data.items)
-    wx.lin.renderWaterFlow(data)
+    wx.lin.renderWaterFlow(data.accumulator)
   },
 
   async initAllData() {
@@ -51,28 +51,11 @@ Page({
     const themeA = theme.getHomeLocationA()
     console.log("----------------themeA----------------");
     console.log(themeA);
-    // const themeE = theme.getHomeLocationE()
-    // let themeESpu = []
 
-    // if (themeE.online) {
-    //   const data = await Theme.getHomeLocationESpu()
-    //   if (data) {
-    //     themeESpu = data.spu_list.slice(0, 8)
-    //   }
-    // }
-
-    // const themeF = theme.getHomeLocationF()
-
-    // const bannerB = await Banner.getHomeLocationB()
     const grid = await Category.getHomeLocationC()
     console.log("----------------grid----------------");
     console.log(grid);
 
-    // const activityD = await Activity.getHomeLocationD()
-
-    // const bannerG = await Banner.getHomeLocationG()
-
-    // const themeH = theme.getHomeLocationH()
 
     this.setData({
       themeA,

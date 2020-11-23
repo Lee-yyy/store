@@ -34,8 +34,7 @@ class Token {
       url: this.tokenUrl,
       method: 'POST',
       data: {
-        account: code,
-        type: 0
+        uid: code,
       },
     })
     wx.setStorageSync('token', res.data.token)

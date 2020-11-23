@@ -9,23 +9,23 @@
 
         <view class="sku-container">
             <view class="image-container">
-<!--                <view class="image-sold-out">-->
-<!--                    <text>下 架</text>-->
-<!--                </view>-->
-<!--                <view class="image-sold-out">-->
-<!--                    <text>售 罄</text>-->
-<!--                </view> -->
-                <view  class="image-stock-pinch">
+                <view wx:if="{{!online}}" class="image-sold-out">
+                    <text>下 架</text>
+                </view>
+                <view wx:elif="{{soldOut}}" class="image-sold-out">
+                    <text>售 罄</text>
+                </view>
+                <view wx:elif="{{s.shortage(cartItem.sku.stock)}}" class="image-stock-pinch">
                     <text>仅剩{{cartItem.sku.stock}}件</text>
                 </view>
                  <image mode="aspectFit" class="left" src="{{cartItem.sku.img}}"></image>
-                <image mode="aspectFit" class="left" src="https://img.ltn.com.tw/Upload/food/page/2019/06/08/190608-9170-0-5tCJ3.png"></image>
-            </view>
+                </view>
 
-            <view class="right disabled">
+            <view class="right  {{soldOut?'disabled':''}}">
                 <view class="description-container">
                     <view class="title-container">
                         <l-tag
+                                wx:if="{{discount}}"
                                 l-class="discount-tag"
                                 size="mini"
                                 bg-color="#c93756"
@@ -34,7 +34,7 @@
                                 height="24">
                             打折
                         </l-tag>
-                        <text class="title">铁二路</text>
+                        <text class="title">{{cartItem.sku.title}}</text>
                     </view>
 
                 </view>
@@ -43,14 +43,13 @@
                     <l-price
                             color="#157658"
                             count-size="28"
-                            value="{{123}}">
+                            value="{{p.shortagePrice(cartItem.sku.price, cartItem.sku.discount_price).mainprice}}">
                     </l-price>
                     <s-counter bind:linout="onOutNumber"
-                               max="{{90}}"
+                               max="{{stock}}"
                                bind:lintap="onSelectCount"
-                               count="{{3}}">
+                               count="{{skuCount}}">
                     </s-counter>
-                    <s-cart-icon></s-cart-icon>
                 </view>
             </view>
 

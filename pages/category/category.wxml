@@ -20,3 +20,4 @@
         </mp-vtabs-content>
     </block>
 </mp-vtabs>
+<l-popup show="{{false}}"> </l-popup>
