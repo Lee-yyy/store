@@ -14,13 +14,12 @@ Component({
     data: {
         address: Object,
         hasChosen: false,
-        showDialog: true
+        showDialog: false
     },
 
     lifetimes: {
         attached() {
             const address = Address.getLocal()
-          console.log(address)
             if (address) {
                 this.setData({
                     address,

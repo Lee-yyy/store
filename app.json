@@ -65,7 +65,9 @@
     "l-list": "/miniprogram_npm/lin-ui/list/index",
     "s-coupon-mini": "/components/coupon-mini/index",
     "s-coupon": "/components/coupon/index",
-    "l-popup": "/miniprogram_npm/lin-ui/popup/index"
+    "l-popup": "/miniprogram_npm/lin-ui/popup/index",
+    "s-address": "/components/address/index",
+    "s-order-sku-item": "/components/order-sku-item/index"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -75,6 +75,10 @@ Page({
     })
   },
 
+  onSingleCheck(event) {
+    this.isAllChecked()
+    this.refreshCartData()
+  },
   onDeleteItem(event) {
       this.isAllChecked()
       this.refreshCartData()

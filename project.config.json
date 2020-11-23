@@ -90,6 +90,11 @@
           "pathName": "pages/detail/detail",
           "query": "pid=81",
           "scene": null
+        },
+        {
+          "name": "pages/order/order",
+          "pathName": "pages/order/order",
+          "scene": null
         }
       ]
     }

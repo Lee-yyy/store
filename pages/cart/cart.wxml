@@ -8,7 +8,7 @@
         <!-- ---------------购物车不为空---------- -->
 <view wx:if="{{!isEmpty}}" class="container">
     <block wx:key="index" wx:for="{{cartItems}}">
-        <s-cart-item cart-item="{{item}}"></s-cart-item>
+        <s-cart-item bind:overflow="onOverflow" bind:itemdelete="onDeleteItem" bind:countfloat="onCountFloat" bind:itemcheck="onSingleCheck" cart-item="{{item}}"></s-cart-item>
     </block>
 </view>
 

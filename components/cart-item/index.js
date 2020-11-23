@@ -16,7 +16,6 @@ Component({
      * 组件的初始数据
      */
     data: {
-        specStr: String,
         discount: Boolean,
         soldOut: Boolean,
         online: Boolean,
@@ -58,7 +57,6 @@ Component({
                 skuId
             })
         },
-
         checkedItem(event) {
             const checked = event.detail.checked
             cart.checkItem(this.properties.cartItem.skuId)

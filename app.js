@@ -14,5 +14,6 @@ App({
 
     const token = new Token()
     token.verify()
+    
   }
 })

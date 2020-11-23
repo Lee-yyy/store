@@ -12,7 +12,7 @@ class Token {
 
   constructor() {
     this.tokenUrl = config.apiBaseUrl + "token"
-    this.verifyUrl = config.apiBaseUrl + "token/verify"
+    // this.verifyUrl = config.apiBaseUrl + "token/verify"
   }
 
   async verify() {
@@ -20,15 +20,16 @@ class Token {
     const token = wx.getStorageSync('token')
     if (!token) {
       await this.getTokenFromServer()
-    } else {
-      await this._verifyFromServer(token)
     }
+    
   }
   // 通过login获取code码去服务器换取Token，并同步的将Token设置到本地缓存中
   async getTokenFromServer() {
     // code
     const r = await wx.login()
     const code = r.code
+    console.log(code);
+    
 
     const res = await promisic(wx.request)({
       url: this.tokenUrl,

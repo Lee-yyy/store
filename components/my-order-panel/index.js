@@ -22,27 +22,27 @@ Component({
     },
 
     pageLifetimes: {
-        // async show() {
-        //     const unpaidCount = await Order.getUnpaidCount()
-        //     const paidCount = await Order.getPaidCount()
-        //     const deliveredCount = await Order.getDeliveredCount()
-        //     this.setData({
-        //         unpaidCount,
-        //         paidCount,
-        //         deliveredCount
-        //     })
-        // }
+        async show() {
+            // const unpaidCount = await Order.getUnpaidCount()
+            // const paidCount = await Order.getPaidCount()
+            // const deliveredCount = await Order.getDeliveredCount()
+            // this.setData({
+            //     unpaidCount,
+            //     paidCount,
+            //     deliveredCount
+            // })
+        }
     },
 
     /**
      * 组件的方法列表
      */
     methods: {
-        // onGotoMyOrder(event) {
-        //     const key = event.currentTarget.dataset.key
-        //     wx.navigateTo({
-        //         url: `/pages/my-order/my-order?key=${key}`
-        //     })
-        // }
+        onGotoMyOrder(event) {
+            const key = event.currentTarget.dataset.key
+            wx.navigateTo({
+                url: `/pages/my-order/my-order?key=${key}`
+            })
+        }
     }
 })
