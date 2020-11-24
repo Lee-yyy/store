@@ -1,49 +1,53 @@
 // components/vatabs-item/index.js
 import {Cart} from "../../models/cart";
 import {CartItem} from "../../models/cart-item";
+const cart = new Cart()
 Component({
   /**
    * 组件的属性列表
    */
   properties: {
-
+    cartCount: Number,
     skuItem: Object,
   },
 
   /**
    * 组件的初始数据
    */
-  data: {
+  data: {cartCount:0},
 
-  },
-
-  /**
-   * 组件的方法列表
-   */
-  methods: {
-    onDetail(){
-      console.log("onDetailonDetailonDetailonDetail")
+  lifetimes: {
+    attached:async function() {
+      // 页面被展示
+      this.refreshCount()
     },
-    // onAddToCart(event){
-    //   console.log(event)
-    //   const chosenSku = this.properties.skuItem
-    //   const cart = new Cart()
-    //   let skuCount = cart.getCartItemCount()
-    //   // if(!skuCount){
-    //   //   skuCount=0
-    //   // }
-    //   console.log("onAddToCart")
-    //   const cartItem = new CartItem(chosenSku, skuCount)
-    //   cart.addItem(cartItem)
-    //   this.updateCartItemCount()
-    // },
-    //
-    // updateCartItemCount() {
-    //   const cart = new Cart()
-    //   this.setData({
-    //     cartItemCount: cart.getCartItemCount(),
-    //     showRealm: false
-    //   })
-    // },
+  },
+  pageLifetimes: {
+    show:async function(){
+      console.log("aaaaaaaaaaaa")
+      this.refreshCount()
+    }
+  },
+  methods: {
+    async refreshCount(){
+      // le.log(this.properties.skuItem)
+      const has = await cart.findEqualItem(this.properties.skuItem.id)
+      if (has){
+        this.setData({
+          cartCount:cart.getSkuCountBySkuId(this.properties.skuItem.id)
+        })
+        return
+      }else {
+        this.setData({
+          cartCount:0
+        })
+      }
+
+    },
+    onDetail() {
+      console.log("onDetailonDetailonDetailonDetail")
+      const skuId=this.properties.skuItem.id
+      this.triggerEvent('showdetail', {skuId})
+    }
   }
 })

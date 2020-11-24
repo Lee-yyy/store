@@ -1,21 +1,21 @@
 import {Spu} from "./spu";
 
 class Cart {
-    static SKU_MIN_COUNT = 1
-    static SKU_MAX_COUNT = 77
-    static CART_ITEM_MAX_COUNT = 77
-    static STORAGE_KEY = 'cart'
+  static SKU_MIN_COUNT = 1
+  static SKU_MAX_COUNT = 77
+  static CART_ITEM_MAX_COUNT = 77
+  static STORAGE_KEY = 'cart'
 
-    _cartData = null
-
+  _cartData = null
+  _cartMap = new WeakMap()
   // 单例模式
-    constructor() {
-        if (typeof Cart.instance === 'object') {
-            return Cart.instance
-        }
-        Cart.instance = this
-        return this
+  constructor() {
+    if (typeof Cart.instance === 'object') {
+      return Cart.instance
     }
+    Cart.instance = this
+    return this
+  }
 
   isEmpty() {
     const cartData = this._getCartData()
@@ -25,6 +25,7 @@ class Cart {
   async getAllCartItemFromLocal() {
     return this._getCartData()
   }
+
   /**
    *从本地缓存中获取购物车数据
    *
@@ -68,6 +69,45 @@ class Cart {
     this._pushItem(newItem)
     this._refreshStorage()
   }
+
+  removeItem(skuId) {
+    const oldItemIndex = this._findEqualItemIndex(skuId)
+    const cartData = this._getCartData()
+    cartData.items.splice(oldItemIndex, 1)
+    this._refreshStorage()
+  }
+
+  _findEqualItemIndex(skuId) {
+    const cartData = this._getCartData()
+    return cartData.items.findIndex(item => {
+      return item.skuId === skuId
+    })
+  }
+
+  // itemCountFromWeakMap(item) {
+  //   const itemCount = 0
+  //   const a =item
+  //   const cartItem =this._cartMap.get(a)
+  //   console.log(cartItem)
+  //   console.log(this._cartMap)
+  //    if(cartItem){
+  //      itemCount.count
+  //    }
+  //   return itemCount
+  // }
+
+  // cartToWeackMap() {
+  //
+  //   console.log("this._cartMap")
+  //   console.log(this._cartData)
+  //   this._cartData.items.forEach((item)=>{this.addToWeakMap(item)})
+  //   console.log(this._cartMap)
+  //   // const cartMap=this._cartMap
+  //   // return cartMap
+  // }
+  // addToWeakMap(item) {
+  //   this._cartMap.set(item,item)
+  // }
 
   /**
    * 校验当前购物车是否已满
@@ -137,9 +177,11 @@ class Cart {
     }
     return oldItem
   }
+
   _isEqualItem(oldItem, skuId) {
     return oldItem.skuId === skuId;
   }
+
   /**
    * 合并相同的sku
    * @param oldItem
@@ -238,9 +280,8 @@ class Cart {
   }
 
 
-
 }
 
 export {
-    Cart
+  Cart
 }

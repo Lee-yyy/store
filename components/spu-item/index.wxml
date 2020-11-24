@@ -49,7 +49,7 @@
                         bold="400"
                         deleted>
                 </l-price></view>
-            <s-cart-icon sku-item="{{skuItem}}" ></s-cart-icon>
+            <s-cart-icon sku-item="{{skuItem}}" cart-count = "{{cartCount}}"></s-cart-icon>
         </view>
     </view>
 </view>

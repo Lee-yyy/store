@@ -1,9 +1,9 @@
 import {Cart} from "../../models/cart";
 import {OrderItem} from "../../models/order-item";
 import {Order} from "../../models/order";
-// import {Coupon} from "../../models/coupon";
-// import {CouponBO} from "../../models/coupon-bo";
-// import {CouponOperate, ShoppingWay} from "../../core/enum";
+import {Coupon} from "../../models/coupon";
+import {CouponBO} from "../../models/coupon-bo";
+import {CouponOperate, ShoppingWay} from "../../core/enum";
 import {showToast} from "../../utils/ui";
 import {OrderPost} from "../../models/order-post";
 import {Payment} from "../../models/payment";
@@ -165,6 +165,35 @@ Page({
 
 
 
+  onChooseCoupon(event) {
+    const couponObj = event.detail.coupon
+    const couponOperate = event.detail.operate
+
+    if (couponOperate === CouponOperate.PICK) {
+      this.data.currentCouponId = couponObj.id
+      const priceObj = CouponBO.getFinalPrice(this.data.order.getTotalPrice(), couponObj)
+      this.setData({
+        finalTotalPrice: priceObj.finalPrice,
+        discountMoney: priceObj.discountMoney
+      })
+    } else {
+      this.data.currentCouponId = null
+      this.setData({
+        finalTotalPrice: this.data.order.getTotalPrice(),
+        discountMoney: 0
+      })
+    }
+
+  },
+
+
+  packageCouponBOList(coupons, order) {
+    return coupons.map(coupon => {
+      const couponBO = new CouponBO(coupon)
+      couponBO.meetCondition(order)
+      return couponBO
+    })
+  }
 
 
 })

@@ -28,22 +28,20 @@ Page({
         isEmpty: false
       })
     }
-    //新鲜度
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow:async function () {
     const cart = new Cart()
-    const cartItems = cart.getAllCartItemFromLocal().items;
+    const cartData = await cart.getAllCartItemFromLocal();
     if (cart.isEmpty()) {
         this.empty()
         return
     }
-    //
     this.setData({
-        cartItems: cartItems
+        cartItems: cartData.items
     })
     this.notEmpty()
     this.isAllChecked()
@@ -69,7 +67,6 @@ Page({
 
   isAllChecked() {
     const allChecked = cart.isAllChecked()
-    console.log(allChecked)
     this.setData({
         allChecked
     })
