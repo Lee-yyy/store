@@ -17,11 +17,11 @@ class Token {
 
   async verify() {
     // 同步获取本地缓存中存储的token
-    const token = wx.getStorageSync('token')
+    let token = wx.getStorageSync('token')
     if (!token) {
-      await this.getTokenFromServer()
+      token =  await this.getTokenFromServer()
     }
-    
+    return token
   }
   // 通过login获取code码去服务器换取Token，并同步的将Token设置到本地缓存中
   async getTokenFromServer() {
@@ -29,7 +29,7 @@ class Token {
     const r = await wx.login()
     const code = r.code
     console.log(code);
-    
+
 
     const res = await promisic(wx.request)({
       url: this.tokenUrl,

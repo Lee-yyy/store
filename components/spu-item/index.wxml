@@ -24,9 +24,6 @@
                     height="24">
                 打折
             </l-tag>
-            <view  class="spec">
-                <text>满20减10</text>
-            </view>
             </view>
 
         </view>
@@ -49,7 +46,7 @@
                         bold="400"
                         deleted>
                 </l-price></view>
-            <s-cart-icon sku-item="{{skuItem}}" cart-count = "{{cartCount}}"></s-cart-icon>
+            <s-cart-icon sku-item="{{skuItem}}" cart-count = "{{skuItem.count}}"></s-cart-icon>
         </view>
     </view>
 </view>

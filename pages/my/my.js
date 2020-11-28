@@ -22,13 +22,13 @@ Page({
 
   onGotoMyCoupon(event) {
     wx.navigateTo({
-      url: "/pages/my-coupon/my-coupon"
+      url: "/pages/my-coupon/my-coupon?key=1"
     })
   },
 
   onGotoMyOrder(event) {
     wx.navigateTo({
-      url: "/pages/my-order/my-order"
+      url: "/pages/my-order/my-order?key=0"
     })
   },
 

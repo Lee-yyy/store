@@ -23,6 +23,13 @@ Page({
 
   async initAllData() {
     // cart.cartToWeackMap()
+    const index = getApp().global_data.activeTab
+    if(index){
+      this.setData({
+        activeTab:index
+      })
+      getApp().global_data.activeTab=0
+    }
     const vtabs = await Category.getAllCategory()
     // console.log(vtabs)
     // this.refreshVtabs(vtabs)

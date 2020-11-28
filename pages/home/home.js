@@ -2,11 +2,10 @@
 
 import {Theme} from "../../models/theme";
 import {imgsrc} from "../../config/config";
-// import {Banner} from "../../models/banner";
 import {Category} from "../../models/category.js";
-// import {Activity} from "../../models/activity";
+import {Activity} from "../../models/activity";
 import {SpuPaging} from "../../models/spu-paging";
-// import {CouponCenterType} from "../../core/enum";
+import {CouponCenterType} from "../../core/enum";
 
 Page({
 
@@ -31,17 +30,21 @@ Page({
 
   async initBottomSpuList() {
     const paging = SpuPaging.getLatestPaging()
-    console.log("----------------paging----------------");
-    console.log(paging)
+    // console.log("----------------paging----------------");
+    // console.log(paging)
+
     this.data.spuPaging = paging
     const data = await paging.getMoreData()
-    console.log("----------------data----------------");
-    console.log(data)
+    // console.log("----------------data----------------");
+    // console.log(data)
+
     if (!data) {
       return
     }
+    console.log(data.itemList);
+    
     // wx.lin.renderWaterFlow(data.items)
-    wx.lin.renderWaterFlow(data.accumulator)
+    wx.lin.renderWaterFlow(data.itemList)
   },
 
   async initAllData() {
@@ -49,32 +52,38 @@ Page({
     await theme.getThemes()
 
     const themeA = theme.getHomeLocationA()
-    console.log("----------------themeA----------------");
-    console.log(themeA);
+    // console.log("----------------themeA----------------");
+    // console.log(themeA);
 
     const grid = await Category.getHomeLocationC()
-    console.log("----------------grid----------------");
-    console.log(grid);
+    // console.log("----------------grid----------------");
+    // console.log(grid);
+
+    const activityD = await Activity.getHomeLocationD()
+    // console.log("----------------activityD----------------");
+    // console.log(activityD);
 
 
     this.setData({
       themeA,
-      // bannerB,
       grid,
-      // activityD,
-      // themeE,
-      // themeESpu,
-      // themeF,
-      // bannerG,
-      // themeH
+      activityD,
     })
   },
 
   // 跳转优惠券列表
-  onGoToCoupons(event) {
-    const name = event.currentTarget.dataset.aname
+  onGoToCoupons() {
     wx.navigateTo({
-      url: `/pages/coupon/coupon?name=${name}&type=${CouponCenterType.ACTIVITY}`
+      url: `/pages/coupon/coupon?key=${CouponCenterType.ACTIVITY}`
+    })
+  },
+
+  onGoToCategory(event) {
+    
+    getApp().global_data.activeTab= event.currentTarget.dataset.index
+    
+    wx.switchTab({
+      url: `/pages/category/category`
     })
   },
   // 触底获取更多spu数据
@@ -83,8 +92,9 @@ Page({
     if (!data) {
       return
     }
-    // wx.lin.renderWaterFlow(data.items)
-    wx.lin.renderWaterFlow(data)
+    wx.lin.renderWaterFlow(data.items)
+    console.log("dataListdataListdataListdataList")
+    console.log(data)
     if (!data.moreData) {
       this.setData({
         loadingType: 'end'

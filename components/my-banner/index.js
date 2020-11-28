@@ -1,6 +1,7 @@
 // components/my-banner/index.js
 import {User} from "../../models/user";
 import {promisic} from "../../utils/util";
+import {Token} from "../../models/token";
 
 Component({
     /**
@@ -40,12 +41,22 @@ Component({
      */
     methods: {
         async onAuthUserInfo(event) {
-            console.log(event.detail)
             if (event.detail.userInfo) {
-                const success = await User.updateUserInfo(event.detail.userInfo)
-                this.setData({
-                    showLoginBtn:false
+                wx.getUserInfo({
+                  success: function(res) {
+                    // var userInfo = res.userInfo
+                    // var nickName = userInfo.nickName
+                    // var avatarUrl = userInfo.avatarUrl
+                    // var gender = userInfo.gender //性别 0：未知、1：男、2：女
+                    // var province = userInfo.province
+                    // var city = userInfo.city
+                    // var country = userInfo.country
+
+                  }
                 })
+              this.setData({
+                showLoginBtn:false
+              })
             }
         },
 

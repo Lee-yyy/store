@@ -9,28 +9,30 @@ class Paging {
   req
   locker = new Locker()
   url
+totalCount
   moreData = true
-  accumulator = []
+  itemList = []
 
 
   constructor(req, limit = 10, start = 0) {
     this.start = start
     this.limit = limit
-    this.req = req
+    this.req = req,
     this.url = req.url
   }
 
-  async getMoreData() {
+  async getMoreData(totalCount) {
     if(!this.moreData){
       return
     }
     if(!this.locker.getLocker()){
-      console.log("locker is closed")
       return
     }
     // 只在有更多数据并锁开着情况下获取数据
     const data =await this._actualGetData()
     this.locker.releaseLocker()
+    console.log(data);
+    
     return data
   }
 
@@ -38,39 +40,41 @@ class Paging {
   async _actualGetData() {
     const req = this._getCurrentReq()
     let paging = await Http.request(req)
-    if(!paging){
+    this.totalCount=paging[1]
+    if(!paging[0]){
       return null
     }
-    if(paging.total === 0){
+    if(this.totalCount === 0){
       return {
         empty:true,
         items:[],
         moreData:false,
-        accumulator:[]
+        itemList:[]
       }
     }
     // 将总页数与当前页数比较确定是否还有更多数据
     // 若还有数据则累加start以便下次请求使用
-    this.moreData = Paging._moreData(paging.total_page, paging.page)
+    this.moreData = Paging._moreData(this.start,this.limit,this.totalCount)
     if(this.moreData){
       this.start += this.limit
+
     }
-    // this._accumulate(paging.items)
-    this._accumulate(paging)
+    this._accumulate(paging[0])
     return {
       empty:false,
-      items: paging.items,
+      items: paging[0],
       moreData:this.moreData,
-      accumulator:this.accumulator
+      itemList:this.itemList,
+      totalCount:this.totalCount
     }
   }
   // 累积的所有spu
   _accumulate(items){
-    this.accumulator = this.accumulator.concat(items)
+    this.itemList = this.itemList.concat(items)
   }
   // 是否还有更多数据
-  static _moreData(totalPage, pageNum) {
-    return pageNum < totalPage-1
+  static _moreData(start,limit,totalCount) {
+    return (start+limit) < totalCount
   }
   // 拼接获取更多数据的url 获取从start起count位数据
   _getCurrentReq() {

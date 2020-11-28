@@ -5,9 +5,10 @@ class Cart {
   static SKU_MAX_COUNT = 77
   static CART_ITEM_MAX_COUNT = 77
   static STORAGE_KEY = 'cart'
+  static Map_KEY = 'map'
 
   _cartData = null
-  _cartMap = new WeakMap()
+  // _cartMap = new Map()
   // 单例模式
   constructor() {
     if (typeof Cart.instance === 'object') {
@@ -19,6 +20,7 @@ class Cart {
 
   isEmpty() {
     const cartData = this._getCartData()
+    console.log(cartData)
     return cartData.items.length === 0;
   }
 
@@ -34,13 +36,17 @@ class Cart {
    */
   _getCartData() {
     if (this._cartData !== null) {
+      // console.log(this._cartMap)
+      // this._cartMap = this.cartToMap(this._cartMap)
       return this._cartData
     }
     let cartData = wx.getStorageSync(Cart.STORAGE_KEY);
+    // let cartMap = wx.getStorageSync(Cart.Map_KEY);
     if (!cartData) {
       cartData = this._initCartDataStorage()
     }
     this._cartData = cartData
+    // this._cartMap=cartMap
     return cartData
   }
 
@@ -54,7 +60,9 @@ class Cart {
     const cartData = {
       items: []
     }
+    // const cartMap = this._cartMap
     wx.setStorageSync(Cart.STORAGE_KEY, cartData)
+    // wx.setStorageSync(Cart.Map_KEY, cartMap)
     return cartData
   }
 
@@ -74,6 +82,7 @@ class Cart {
     const oldItemIndex = this._findEqualItemIndex(skuId)
     const cartData = this._getCartData()
     cartData.items.splice(oldItemIndex, 1)
+    // this.removeItemFromMap(skuId)
     this._refreshStorage()
   }
 
@@ -84,31 +93,20 @@ class Cart {
     })
   }
 
-  // itemCountFromWeakMap(item) {
-  //   const itemCount = 0
-  //   const a =item
-  //   const cartItem =this._cartMap.get(a)
-  //   console.log(cartItem)
-  //   console.log(this._cartMap)
-  //    if(cartItem){
-  //      itemCount.count
-  //    }
-  //   return itemCount
-  // }
 
-  // cartToWeackMap() {
-  //
-  //   console.log("this._cartMap")
-  //   console.log(this._cartData)
-  //   this._cartData.items.forEach((item)=>{this.addToWeakMap(item)})
-  //   console.log(this._cartMap)
-  //   // const cartMap=this._cartMap
-  //   // return cartMap
-  // }
-  // addToWeakMap(item) {
-  //   this._cartMap.set(item,item)
-  // }
 
+  // cartToMap() {
+    // console.log(this._cartData)
+    // this._cartData.items.forEach((item)=>{this.replaceItemCountAtMap(item)})
+    // console.log(this._cartMap)
+  // }
+  // replaceItemCountAtMap(item){
+  //   console.log(item)
+  //   this._cartMap.set(item.skuId,item.count)
+  // }
+  // removeItemFromMap(itemId){
+  //   this._cartMap.delete(itemId)
+  // }
   /**
    * 校验当前购物车是否已满
    * @returns {boolean}
@@ -135,7 +133,11 @@ class Cart {
     }
   }
 
-  //更新购物车中item的数量
+  /**
+   * 更新购物车中item的数量
+   * @param skuId
+   * @param newCount
+   */
   replaceItemCount(skuId, newCount) {
     const oldItem = this.findEqualItem(skuId)
     if (!oldItem) {
@@ -147,6 +149,7 @@ class Cart {
       return
     }
     oldItem.count = newCount
+    // this.replaceItemCountAtMap(oldItem)
     if (oldItem.count >= Cart.SKU_MAX_COUNT) {
       oldItem.count = Cart.SKU_MAX_COUNT
     }
@@ -274,6 +277,7 @@ class Cart {
     for (let i = 0; i < cartData.items.length; i++) {
       if (cartData.items[i].checked) {
         cartData.items.splice(i, 1)
+        // this.removeItemFromMap(cartData.items[i].id)
       }
     }
     this._refreshStorage()

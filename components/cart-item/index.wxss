@@ -17,7 +17,7 @@
 }
 .left{
     height:100%;
-    width:100%;
+    width: 100%;
 }
 
 .sku-container{
@@ -25,6 +25,7 @@
     flex: 1 1 auto;
     display:flex;
     flex-direction:row;
+    /* margin: 5rpx 0; */
     /*position: relative;*/
 }
 

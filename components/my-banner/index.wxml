@@ -4,7 +4,6 @@
                   l-class="avatar" shape="square"
                   open-data="{{['userAvatarUrl','userNickName']}}">
         </l-avatar>
-        <view wx:if="{{showLoginBtn}}">dengluuu</view>
         <l-button wx:if="{{showLoginBtn}}" l-class="auth-btn"
                   bg-color="#DCEBE6"
                   open-type="getUserInfo"

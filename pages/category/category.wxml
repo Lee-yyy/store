@@ -13,7 +13,7 @@
     <block wx:for="{{vtabs}}" wx:key="id" >
         <mp-vtabs-content tabIndex="{{index}}">
             <view class="content-title">
-            <text>{{item.name}}</text>
+            <text >{{item.name}}</text>
             </view>
             <view wx:for="{{item.skuList}}" wx:key="id" class="spu-box" >
                 <s-spu-item  sku-item="{{item}}" bind:showdetail="onShowDetail">

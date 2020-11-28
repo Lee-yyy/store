@@ -19,5 +19,16 @@ Component({
    */
   methods: {
 
+    onGoToCategory(event) {
+      console.log("grid-item");
+      console.log(event);
+      
+    
+      getApp().global_data.activeTab = event.currentTarget.dataset.index
+    wx.switchTab({
+      url: `/pages/category/category`
+    })
+    
+    },
   }
 })

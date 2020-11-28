@@ -1,18 +1,41 @@
 // pages/coupon/coupon.js
+import {Activity} from "../../models/activity";
+import {CouponCenterType} from "../../core/enum";
+import {Coupon} from "../../models/coupon";
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    coupons: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: async function (options) {
+    // const aName = options.name
+        const aName = "a-1"
+    const type = options.type
+    const cid = options.cid
 
+    let coupons
+
+    if (type === CouponCenterType.ACTIVITY) {
+      const activity = await Activity.getActivityWithCoupon(aName)
+      coupons = activity.couponList
+    }
+    if (type === CouponCenterType.SPU_CATEGORY) {
+      coupons = await Coupon.getCouponsByCategory(cid)
+      const wholeStoreCoupons = await Coupon.getWholeStoreCoupons()
+      coupons = coupons.concat(wholeStoreCoupons)
+    }
+
+    this.setData({
+      coupons
+    });
   },
 
   /**

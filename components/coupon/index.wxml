@@ -5,7 +5,7 @@
 
         <view class="top">
             <view style="color:{{s.couponColorStatus(_status)}}" class="price-container">
-                <view wx:if="{{_coupon.type === 2}}">
+                <view wx:if="{{_coupon.rate}}">
                     <text class="rate">{{_coupon.rate * 10}}</text>
                     <text style="font-size:26rpx;">折</text>
                 </view>
@@ -13,11 +13,11 @@
                          value="{{_coupon.minus}}"
                          color="{{s.couponColorStatus(_status)}}">
                 </l-price>
-                <text style="margin-left:10rpx">{{_coupon.title}}</text>
+                <text  style="margin-left:20rpx">{{_coupon.title}}</text>
             </view>
         </view>
         <view class="bottom">
-            <text>{{_coupon.remark}}
+            <text>{{_coupon.description}}
             </text>
         </view>
     </view>

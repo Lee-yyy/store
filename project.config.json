@@ -94,6 +94,19 @@
         {
           "name": "pages/order/order",
           "pathName": "pages/order/order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my-order/my-order",
+          "pathName": "pages/my-order/my-order",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/my-coupon/my-coupon",
+          "pathName": "pages/my-coupon/my-coupon",
+          "query": "type=1",
           "scene": null
         }
       ]

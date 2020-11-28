@@ -1,10 +1,10 @@
 import {Http} from "../utils/http";
+import {Token} from "./token";
 
 class Coupon {
     static async collectCoupon(cid) {
         return await Http.request({
-            method: 'POST',
-            url: `coupon/collect/${cid}`,
+            url: `coupon/collection/${cid}`,
             throwError: true
         })
         // return await Http
@@ -12,7 +12,7 @@ class Coupon {
 
     static getMyCoupons(status) {
         return Http.request({
-            url: `coupon/myself/by/status/${status}`
+            url: `coupon/by/status/${status}`
         })
     }
 

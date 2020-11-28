@@ -21,6 +21,7 @@ Page({
    */
   async onLoad(options) {
     const cartData = await cart.getAllCartItemFromLocal()
+    console.log("cartData")
     console.log(cartData)
     if (cartData) {
       this.setData({
@@ -34,9 +35,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow:async function () {
-    const cart = new Cart()
     const cartData = await cart.getAllCartItemFromLocal();
     if (cart.isEmpty()) {
+      console.log("cart.isEmpty()")
         this.empty()
         return
     }
@@ -79,6 +80,9 @@ Page({
   onDeleteItem(event) {
       this.isAllChecked()
       this.refreshCartData()
+        if(this.data.cartItems.length=0){
+          this.empty()
+        }
   },
 
   onCheckAll(event) {

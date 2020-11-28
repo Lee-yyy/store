@@ -15,5 +15,6 @@ App({
     const token = new Token()
     token.verify()
     
-  }
+  },
+  global_data: {}
 })

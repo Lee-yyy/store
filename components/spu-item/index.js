@@ -24,13 +24,12 @@ Component({
   },
   pageLifetimes: {
     show:async function(){
-      console.log("aaaaaaaaaaaa")
+      // console.log("aaaaaaaaaaaa")
       this.refreshCount()
     }
   },
   methods: {
     async refreshCount(){
-      // le.log(this.properties.skuItem)
       const has = await cart.findEqualItem(this.properties.skuItem.id)
       if (has){
         this.setData({

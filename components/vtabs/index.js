@@ -144,7 +144,11 @@ Component({
         }
     },
     lifetimes: {
-        attached: function attached() {}
+        attached: function attached() {
+            console.log("this.properties.activeTab"+this.properties.activeTab);
+            // console.log();
+            
+        }
     },
     methods: {
         calcHeight: function calcHeight() {

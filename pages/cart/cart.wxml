@@ -1,6 +1,6 @@
 <!--导航__购物车-->
         <!-- ---------------购物车为空---------- -->
-<view class="empty-container" wx:if="{{isEmpty}}">
+<view class="empty-container" wx:if="{{isEmpty}}">{{isEmpty}}
     <s-empty show-btn show text="购物车空空的，去逛逛吧" btn-text="去逛逛"></s-empty>
 </view>
 

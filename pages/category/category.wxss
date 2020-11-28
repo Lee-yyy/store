@@ -21,6 +21,9 @@ padding:5rpx 30rpx 5rpx 0;
     margin-top: 3px;
     background-color: rgba(247, 247, 247);
 }
+.content-title text{
+    padding-left: 15rpx;
+}
 .sku-box{
     height: 460rpx;
     width: 400rpx;
