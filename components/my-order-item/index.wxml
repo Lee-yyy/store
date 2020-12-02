@@ -43,4 +43,15 @@
     </view>
 </view>
 
+<l-dialog
+        show="{{showLog}}"
+        type="confirm"
+        title="提示"
+        content="此为测试程序，为保护您的财产安全，暂不开启真实支付功能。点击yes模拟支付成功，no~模拟支付失败"
+        confirm-text="yes"
+        confirm-color="#f60"
+        cancel-text="no~"
+        cancel-color="#999"
+        bind:linconfirm="paySuccess"
+        />
 <l-loading></l-loading>

@@ -30,27 +30,26 @@ Page({
 
   async initItems(activeKey) {
 
-    wx.lin.hideEmpty()
+    // wx.lin.hideEmpty()
     this.setData({
       activeKey,
       items:[]
     })
-    this.data.paging = this.getPaging(activeKey)
-    const data = await this.data.paging.getMoreData()
+    const data = await this.getPaging(activeKey)
     console.log(data)
-    if(!data){
-      return
-    }
+    // if(!data){
+    //   return
+    // }
     this.bindItems(data)
   },
 
-  getPaging(activeKey) {
+ async getPaging(activeKey) {
     activeKey = parseInt(activeKey)
     switch (activeKey) {
       case OrderStatus.ALL:
         return Order.getPagingByStatus(OrderStatus.ALL)
       case OrderStatus.UNPAID:
-        return Order.getPagingUnpaid()
+        return Order.getPagingByStatus(OrderStatus.UNPAID)
       case OrderStatus.PAID:
         return Order.getPagingByStatus(OrderStatus.PAID)
       case OrderStatus.DELIVERED :
@@ -61,30 +60,30 @@ Page({
   },
 
   empty() {
-    wx.lin.showEmpty({
-      text:'暂无相关订单',
-    })
+    // wx.lin.showEmpty({
+    //   text:'暂无相关订单',
+    // })
     this.setData({
       bottomLoading:false
     })
   },
 
   bindItems(data) {
-    if(data.empty){
-      this.empty()
+    if(data.length==0){
+      // this.empty()
       return
     }
-    if (data.accumulator.length !== 0){
+    // if (data.accumulator.length !== 0){
       this.setData({
-        items:data.accumulator,
-        bottomLoading:true
+        items:data,
+        // bottomLoading:true
       });
-    }
-    if(!data.moreData){
-      this.setData({
-        loadingType:'end'
-      })
-    }
+    // }
+    // if(!data.moreData){
+    //   this.setData({
+    //     loadingType:'end'
+    //   })
+    // }
   },
 
   onSegmentChange(event) {
@@ -92,10 +91,10 @@ Page({
     this.initItems(activeKey)
   },
 
-  async onReachBottom() {
-    const data = await this.data.paging.getMoreData()
-    this.bindItems(data)
-  },
+  // async onReachBottom() {
+  //   const data = await this.data.paging.getMoreData()
+  //   this.bindItems(data)
+  // },
 
   onPaySuccess(event) {
     const oid = event.detail.oid

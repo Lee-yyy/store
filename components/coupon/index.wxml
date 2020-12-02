@@ -27,7 +27,7 @@
             <text>{{_coupon.endTime}}</text>
         </view>
     </view>
-    <view data-id="{{_coupon.id}}" bind:tap="onGetCoupon" class="touch-region ">
+    <view  data-status="{{_status}}" data-alphaBeta="2" data-id="{{_coupon.id}}" bind:tap="onGetCoupon" class="touch-region ">
 
     </view>
 </view>

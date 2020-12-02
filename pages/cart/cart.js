@@ -80,7 +80,7 @@ Page({
   onDeleteItem(event) {
       this.isAllChecked()
       this.refreshCartData()
-        if(this.data.cartItems.length=0){
+        if(this.data.cartItems.length==0){
           this.empty()
         }
   },

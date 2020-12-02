@@ -100,7 +100,7 @@
         {
           "name": "pages/my-order/my-order",
           "pathName": "pages/my-order/my-order",
-          "query": "",
+          "query": "key=1",
           "scene": null
         },
         {

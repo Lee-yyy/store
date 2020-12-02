@@ -276,7 +276,9 @@ class Cart {
     const cartData = this._getCartData()
     for (let i = 0; i < cartData.items.length; i++) {
       if (cartData.items[i].checked) {
+        console.log(cartData.items[i])
         cartData.items.splice(i, 1)
+        i--
         // this.removeItemFromMap(cartData.items[i].id)
       }
     }

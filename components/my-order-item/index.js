@@ -1,6 +1,6 @@
 // components/order-sku-panel/index.js
 // import {orderStatusBehavior} from "../behaviors/order-status-beh";
-// import {OrderDetail} from "../../models/order-detail";
+import {OrderDetail} from "../../models/order-detail";
 import {Payment} from "../../models/payment";
 import {OrderStatus} from "../../core/enum";
 
@@ -32,7 +32,7 @@ Component({
             if (!item) {
                 return
             }
-            const order = new OrderDetail(item)
+            const order = new OrderDetail(item,30)
             // // this.setData({
             // //     statusText: this.orderStatusText(item.status),
             // // })
@@ -72,30 +72,41 @@ Component({
                 this.enableSubmitBtn()
                 return
             }
-            wx.lin.showLoading({
-                type: "flash",
-                fullScreen: true,
-                color: "#157658"
-            })
-            const payParams = await Payment.getPayParms(oid)
-            // let payStatus = OrderStatus.UNPAID
-            let res
-            try {
-                res = await Payment.pay(payParams)
-                // payStatus = OrderStatus.PAID
-                wx.lin.hideLoading()
-                console.log(res)
-                this.triggerEvent('paysuccess',{
-                    oid
-                })
-            } catch (e) {
-                console.error(e)
-                wx.lin.hideLoading()
-            }
+          this.setData({
+            showLog:true
+          })
+            // wx.lin.showLoading({
+            //     type: "flash",
+            //     fullScreen: true,
+            //     color: "#157658"
+            // })
+            // const payParams = await Payment.getPayParms(oid)
+            // // let payStatus = OrderStatus.UNPAID
+            // let res
+            // try {
+            //     res = await Payment.pay(payParams)
+            //     // payStatus = OrderStatus.PAID
+            //     wx.lin.hideLoading()
+            //     console.log(res)
+            //     this.triggerEvent('paysuccess',{
+            //         oid
+            //     })
+            // } catch (e) {
+            //     console.error(e)
+            //     wx.lin.hideLoading()
+            // }
             // //必须使用redirectTo防止Order页面被频繁打开
             // wx.redirectTo({
             //     url: `/pages/my-order/my-order?key=${payStatus}`
             // })
-        }
+        },
+      paySuccess(){
+        this.setData({
+          showLog:false
+        })
+        wx.redirectTo({
+          url: `/pages/pay-success/pay-success?oid=${this.data.oid}`
+        })
+      },
     }
 })

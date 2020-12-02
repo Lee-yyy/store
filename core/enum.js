@@ -11,7 +11,6 @@ const ShoppingWay = {
 
 const CouponCenterType = {
   ACTIVITY: 'activity',
-  SPU_CATEGORY: 'spu_category'
 }
 
 const SpuListType = {

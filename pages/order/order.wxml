@@ -40,7 +40,17 @@
         提交订单
     </l-button>
 </view>
-
+<l-dialog
+        show="{{showLog}}"
+        type="confirm"
+        title="提示"
+        content="此为测试程序，为保护您的财产安全，暂不开启真实支付功能。点击yes模拟支付成功，no~模拟支付失败"
+        confirm-text="yes"
+        confirm-color="#f60"
+        cancel-text="no~"
+        cancel-color="#999"
+        bind:linconfirm="paySuccess"
+        bind:lincancel="payFail"/>
 <l-status-show show="{{!isOk}}" describe="订单中包含有售罄/下架/超出数量的商品" type="data"></l-status-show>
 
 <l-dialog content-color="#333333" type="alert" title="订单生成失败" l-confirm-class="dialog-confirm" show="{{orderFail}}" content="{{orderFailMsg}}">

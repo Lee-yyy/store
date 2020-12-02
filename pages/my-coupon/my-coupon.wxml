@@ -5,13 +5,7 @@
     <l-segment-item tab="已失效" key="3"></l-segment-item>
 </l-segment>
 <view class="container">
-    <block wx:for="{{availableList}}">
-        <s-coupon coupon="{{item}}" status="{{item.type}}"></s-coupon>
-    </block>
-    <block wx:for="{{usedList}}">
-        <s-coupon coupon="{{item}}" status="{{item.type}}"></s-coupon>
-    </block>
-    <block wx:for="{{expiredList}}">
-        <s-coupon coupon="{{item}}" status="{{item.type}}"></s-coupon>
+    <block wx:for="{{coupons}}">
+        <s-coupon coupon="{{item}}" status="{{item.type}}" way="my-coupon"></s-coupon>
     </block>
 </view>

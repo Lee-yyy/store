@@ -72,6 +72,7 @@
     "s-order-sku-item": "/components/order-sku-item/index",
     "l-segment": "/miniprogram_npm/lin-ui/segment/index",
     "l-segment-item": "/miniprogram_npm/lin-ui/segment-item/index",
+    "l-dialog": "/miniprogram_npm/lin-ui/dialog/index",
     "l-countdown": "/miniprogram_npm/lin-ui/countdown/index"
   },
   "style": "v2",

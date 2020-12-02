@@ -28,6 +28,8 @@ Page({
 
     orderFail: false,
     orderFailMsg: '',
+    showLog:false,
+    oid:null
 
   },
 
@@ -37,9 +39,9 @@ Page({
   onLoad: async function (options) {
     let orderItems;
     let localItemCount
-      const checkedItems = cart.getCheckedItems()
-      orderItems = await this.getCartOrderItems(checkedItems)
-      localItemCount = orderItems.length
+    const checkedItems = cart.getCheckedItems()
+    orderItems = await this.getCartOrderItems(checkedItems)
+    localItemCount = orderItems.length
 
     const order = new Order(orderItems, localItemCount)
     console.log(order)
@@ -93,34 +95,38 @@ Page({
       this.data.currentCouponId,
       order.getOrderSkuInfoList(),
       this.data.address
-
     )
 
     const oid = await this.postOrder(orderPost)
+    console.log("======================oid")
     console.log(oid)
     if (!oid) {
       this.enableSubmitBtn()
       return
     }
 
-      cart.removeCheckedItems()
+    cart.removeCheckedItems()
+    this.data.oid=oid
 
-    const payParams = await Payment.getPayParams(oid)
+    this.setData({
+      showLog:true
+    })
+    // const payParams = await Payment.getPayParams(oid)
+    //
+    // if (!payParams) {
+    //   return
+    // }
 
-    if (!payParams) {
-      return
-    }
-
-    try {
-      const res = await wx.requestPayment(payParams)
-      wx.redirectTo({
-        url: `/pages/pay-success/pay-success?oid=${oid}`
-      })
-    } catch (e) {
-      wx.redirectTo({
-        url: `/pages/my-order/my-order?key=${1}`
-      })
-    }
+    // try {
+    //   const res = await wx.requestPayment(payParams)
+    //   wx.redirectTo({
+    //     url: `/pages/pay-success/pay-success?oid=${oid}`
+    //   })
+    // } catch (e) {
+    //   wx.redirectTo({
+    //     url: `/pages/my-order/my-order?key=${1}`
+    //   })
+    // }
 
     // wx.requestPayment()
 
@@ -133,8 +139,9 @@ Page({
   async postOrder(orderPost) {
     try {
       const serverOrder = await Order.postOrderToServer(orderPost)
+      console.log(serverOrder + "=============================")
       if (serverOrder) {
-        return serverOrder.id
+        return serverOrder
       }
       // throwError
     } catch (e) {
@@ -145,7 +152,22 @@ Page({
       })
     }
   },
-
+  paySuccess(){
+    this.setData({
+      showLog:false
+    })
+      wx.redirectTo({
+        url: `/pages/pay-success/pay-success?oid=${this.data.oid}`
+      })
+  },
+  payFail(){
+    this.setData({
+      showLog:false
+    })
+      wx.redirectTo({
+        url: `/pages/my-order/my-order?key=${1}`
+      })
+  },
   disableSubmitBtn() {
     this.setData({
       submitBtnDisable: true
@@ -162,7 +184,6 @@ Page({
     const address = event.detail.address
     this.data.address = address
   },
-
 
 
   onChooseCoupon(event) {

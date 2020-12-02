@@ -4,7 +4,7 @@
             type="{{loadingType}}">
     <view slot="content" class="container">
         <!--    优惠券-->
-        <image class="activity" data-index="0"bind:tap="onGoToCategory"  src="{{themeA.entrance_img}}"></image>
+        <image class="activity" data-index="0" bind:tap="onGoToCategory"  src="{{themeA.entrance_img}}"></image>
 
         <!--    分类宫格-->
         <s-category-grid grid="{{grid}}" bind:gotocategory="onGoToCategory"></s-category-grid>

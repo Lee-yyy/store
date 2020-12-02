@@ -7,7 +7,6 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    cartCount: Number,
     skuItem: Object,
   },
 
@@ -18,13 +17,12 @@ Component({
 
   lifetimes: {
     attached:async function() {
-      // 页面被展示
       this.refreshCount()
     },
   },
   pageLifetimes: {
+    // 页面被展示
     show:async function(){
-      // console.log("aaaaaaaaaaaa")
       this.refreshCount()
     }
   },
@@ -44,7 +42,6 @@ Component({
 
     },
     onDetail() {
-      console.log("onDetailonDetailonDetailonDetail")
       const skuId=this.properties.skuItem.id
       this.triggerEvent('showdetail', {skuId})
     }

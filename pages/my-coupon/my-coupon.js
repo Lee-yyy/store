@@ -23,20 +23,19 @@ Page({
   onLoad: async function (options) {
     // const aName = options.name
 
-    const activeKey = options.key
-    this.data.activeKey = options.key
 
-    this.initItems(activeKey)
+    this.initItems(this.data.activeKey)
   },
 
   getPaging(activeKey) {
     activeKey = parseInt(activeKey)
     switch (activeKey) {
       case CouponStatus.AVAILABLE:
+        console.log("activeKey:CouponStatus.AVAILABLE")
         return Coupon.getMyCoupons(CouponStatus.AVAILABLE)
-      case CouponStatus.USED:
+      case CouponStatus.USED:console.log("activeKey:CouponStatus.USED")
         return Coupon.getMyCoupons(CouponStatus.USED)
-      case CouponStatus.EXPIRED :
+      case CouponStatus.EXPIRED :console.log("activeKey:CouponStatus.EXPIRED")
         return Coupon.getMyCoupons(CouponStatus.EXPIRED)
     }
   },
@@ -53,9 +52,10 @@ Page({
       activeKey,
       items:[]
     })
-    if(activeKey==CouponStatus.AVAILABLE){}
-    if(activeKey==CouponStatus.USED){}
-    if(activeKey==CouponStatus.EXPIRED){}
+    // if(activeKey==CouponStatus.AVAILABLE){}
+    // if(activeKey==CouponStatus.USED){}
+    // if(activeKey==CouponStatus.EXPIRED){}
+    console.log(activeKey)
     const data=await this.getPaging(activeKey)
     console.log(data)
     if(!data){

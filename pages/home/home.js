@@ -42,7 +42,7 @@ Page({
       return
     }
     console.log(data.itemList);
-    
+
     // wx.lin.renderWaterFlow(data.items)
     wx.lin.renderWaterFlow(data.itemList)
   },
@@ -74,14 +74,14 @@ Page({
   // 跳转优惠券列表
   onGoToCoupons() {
     wx.navigateTo({
-      url: `/pages/coupon/coupon?key=${CouponCenterType.ACTIVITY}`
+      url: `/pages/coupon/coupon`
     })
   },
 
   onGoToCategory(event) {
-    
+
     getApp().global_data.activeTab= event.currentTarget.dataset.index
-    
+
     wx.switchTab({
       url: `/pages/category/category`
     })

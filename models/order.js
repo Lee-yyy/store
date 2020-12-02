@@ -144,13 +144,13 @@ class Order {
     //     })
     // }
     //
-    // static getPagingByStatus(status) {
-    //     return new Paging({
-    //         url:`order/by/status/${status}`
-    //     })
-    //     // return Http.request({
-    //     // })
-    // }
+    static getPagingByStatus(status) {
+        return Http.request({
+            url:`order/by/status/${status}`
+        })
+        // return Http.request({
+        // })
+    }
     //
     // static getPagingUnpaid() {
     //     return new Paging({

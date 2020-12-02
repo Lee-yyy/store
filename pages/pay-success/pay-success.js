@@ -16,6 +16,7 @@ Page({
         // wx.lin.showStatusShow({
         //     type: 'success'
         // })
+      console.log("this.data.oid"+this.data.oid)
     },
 
     onGotoOrderDetail(event) {
